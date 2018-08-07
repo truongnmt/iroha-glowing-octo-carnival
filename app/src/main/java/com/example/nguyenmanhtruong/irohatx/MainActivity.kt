@@ -9,14 +9,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-//    static {
-//        try {
-//            System.loadLibrary("irohajava");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     companion object {
 
         init {

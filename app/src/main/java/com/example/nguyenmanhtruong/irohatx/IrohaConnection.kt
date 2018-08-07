@@ -103,17 +103,9 @@ class IrohaConnection(context: Context) {
             val queryStub = QueryServiceGrpc.newBlockingStub(channel)
             val queryResponse = queryStub.find(protoQuery)
 
-            emitter.onSuccess(queryResponse.getAccountDetailResponse().getDetail())
+            emitter.onSuccess(queryResponse.accountDetailResponse.detail)
         }
     }
-
-//    private fun toByteArray(blob: ByteVector): ByteArray {
-//        val bs = ByteArray(blob.size().toInt())
-//        for (i in 0 until blob.size().toInt()) {
-//            bs[i] = blob.get(i).toByte()
-//        }
-//        return bs
-//    }
 
     private fun toByteArray(blob: ByteVector): ByteArray {
         val bs = ByteArray(blob.size().toInt())
@@ -135,6 +127,6 @@ class IrohaConnection(context: Context) {
             response = features.next()
         }
 
-        return response!!.getTxStatus() === Endpoint.TxStatus.COMMITTED
+        return response!!.txStatus === Endpoint.TxStatus.COMMITTED
     }
 }

@@ -1,7 +1,7 @@
 package com.example.nguyenmanhtruong.irohatx
 
-const val PUB_KEY = "407e57f50ca48969b08ba948171bb2435e035d82cec417e18e4a38f5fb113f83"
-const val PRIV_KEY = "1d7e0a32ee0affeb4d22acd73c2c6fb6bd58e266c8c2ce4fa0ffe3dd6a253ffb"
+const val PUB_KEY = "43c45bad4d51d5c4b3a8e5909bac96de33a6dc8de24dab4852e85d273ecdc9ff"
+const val PRIV_KEY = "ed6f95afde8902f82dfaa5940093e1c33647508c94b22aa4bf9bb683198d0e27"
 const val CREATOR = "admin@test"
 const val TX_COUNTER: Long = 1
 const val QUERY_COUNTER: Long = 1
