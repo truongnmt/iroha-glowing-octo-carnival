@@ -50,7 +50,7 @@ class IrohaConnection(context: Context) {
 
             // Send transaction to iroha
             var stub = CommandServiceGrpc.newBlockingStub(channel)
-                    .withDeadlineAfter(5, TimeUnit.SECONDS)
+                    .withDeadlineAfter(CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             stub.torii(protoTx)
 
             // Check if it was successful

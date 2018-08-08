@@ -6,3 +6,4 @@ const val CREATOR = "admin@test"
 const val TX_COUNTER: Long = 1
 const val QUERY_COUNTER: Long = 1
 const val DOMAIN_ID = "test"
+const val CONNECTION_TIMEOUT_SECONDS: Long = 20
