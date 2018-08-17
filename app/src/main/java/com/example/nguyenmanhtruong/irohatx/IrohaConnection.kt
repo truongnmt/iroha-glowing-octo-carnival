@@ -10,6 +10,7 @@ import iroha.protocol.*
 import jp.co.soramitsu.iroha.android.*
 import java.math.BigInteger
 import java.util.concurrent.TimeUnit
+import iroha.protocol.TransactionOuterClass
 
 class IrohaConnection(context: Context) {
 
@@ -34,18 +35,18 @@ class IrohaConnection(context: Context) {
                     .build()
 
             // sign transaction and get its binary representation (Blob)
-            protoTxHelper = ModelProtoTransaction(createAccount)
-            var txblob = protoTxHelper.signAndAddSignature(adminKeys).finish().blob()
+            var txblob = ModelProtoTransaction(createAccount).signAndAddSignature(adminKeys).finish().blob()
 
             // Convert ByteVector to byte array
             var bs = toByteArray(txblob)
 
             // create proto object
-            var protoTx: BlockOuterClass.Transaction? = null
+            var protoTx: TransactionOuterClass.Transaction? = null
             try {
-                protoTx = BlockOuterClass.Transaction.parseFrom(bs)
+                protoTx = TransactionOuterClass.Transaction.parseFrom(bs)
             } catch (e: InvalidProtocolBufferException) {
-                emitter.onError(e)
+                System.err.println("Exception while converting byte array to protobuf:" + e.message)
+                System.exit(1)
             }
 
             // Send transaction to iroha
@@ -70,9 +71,10 @@ class IrohaConnection(context: Context) {
             bs = toByteArray(txblob)
             // create proto object
             try {
-                protoTx = BlockOuterClass.Transaction.parseFrom(bs)
+                protoTx = TransactionOuterClass.Transaction.parseFrom(bs)
             } catch (e: InvalidProtocolBufferException) {
-                emitter.onError(e)
+                System.err.println("Exception while converting byte array to protobuf:" + e.message)
+                System.exit(1)
             }
 
             // Send transaction to iroha
@@ -114,6 +116,7 @@ class IrohaConnection(context: Context) {
         }
         return bs
     }
+
     private fun isTransactionSuccessful(stub: CommandServiceGrpc.CommandServiceBlockingStub, utx: UnsignedTx): Boolean {
         val txhash = utx.hash().blob()
         val bshash = toByteArray(txhash)

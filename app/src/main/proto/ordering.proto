@@ -1,9 +1,10 @@
 syntax = "proto3";
 package iroha.ordering.proto;
 
-import "iroha/protocol/block.proto";
-import "iroha/protocol/proposal.proto";
-import "empty.proto";
+import "transaction.proto";
+import "proposal.proto";
+import "endpoint.proto";
+import "google/protobuf/empty.proto";
 
 service OrderingGateTransportGrpc {
     rpc onProposal (protocol.Proposal) returns (google.protobuf.Empty);

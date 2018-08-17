@@ -18,7 +18,7 @@
 syntax = "proto3";
 package iroha.network.proto;
 
-import "iroha/protocol/block.proto";
+import "block.proto";
 
 message BlocksRequest {
     uint64 height = 1;

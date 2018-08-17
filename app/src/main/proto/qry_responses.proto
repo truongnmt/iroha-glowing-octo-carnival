@@ -1,7 +1,13 @@
+/**
+ * Copyright Soramitsu Co., Ltd. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 syntax = "proto3";
 package iroha.protocol;
-import "iroha/protocol/block.proto";
-import "iroha/protocol/primitive.proto";
+import "block.proto";
+import "transaction.proto";
+import "primitive.proto";
 
 // *** WSV data structure *** //
 message Asset {
@@ -25,7 +31,7 @@ message Account {
 message AccountAsset {
     string asset_id = 1;
     string account_id = 2;
-    Amount balance = 3;
+    string balance = 3;
 }
 
 // *** Responses *** //
@@ -51,20 +57,20 @@ message RolesResponse {
 }
 
 message RolePermissionsResponse {
-    repeated string permissions = 1;
+    repeated RolePermission permissions = 1;
 }
 
 message ErrorResponse {
     enum Reason {
         STATELESS_INVALID = 0;
         STATEFUL_INVALID = 1;
-        NO_ACCOUNT = 2; // when requested account does not exist
-        NO_ACCOUNT_ASSETS = 3; // when requested account asset does not exist
-        NO_ACCOUNT_DETAIL = 4; // when requested account detail does not exist
-        NO_SIGNATORIES = 5; // when requested signatories does not exist
-        NOT_SUPPORTED = 6; // when unidentified request was received
-        NO_ASSET = 7; // when requested asset does not exist
-        NO_ROLES = 8; // when there are no roles defined in the system
+        NO_ACCOUNT = 2;         // when requested account does not exist
+        NO_ACCOUNT_ASSETS = 3;  // when requested account asset does not exist
+        NO_ACCOUNT_DETAIL = 4;  // when requested account detail does not exist
+        NO_SIGNATORIES = 5;     // when requested signatories does not exist
+        NOT_SUPPORTED = 6;      // when unidentified request was received
+        NO_ASSET = 7;           // when requested asset does not exist
+        NO_ROLES = 8;           // when there are no roles defined in the system
     }
     Reason reason = 1;
     string message = 2;

@@ -1,1 +1,1 @@
-include ':iroha-android-bindings', ':app'
+include ':app'
