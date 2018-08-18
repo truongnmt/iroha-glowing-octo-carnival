@@ -7,9 +7,10 @@ import "endpoint.proto";
 import "google/protobuf/empty.proto";
 
 service OrderingGateTransportGrpc {
-    rpc onProposal (protocol.Proposal) returns (google.protobuf.Empty);
+  rpc onProposal (protocol.Proposal) returns (google.protobuf.Empty);
 }
 
 service OrderingServiceTransportGrpc {
-    rpc onTransaction (iroha.protocol.Transaction) returns (google.protobuf.Empty);
+  rpc onTransaction (iroha.protocol.Transaction) returns (google.protobuf.Empty);
+  rpc onBatch (iroha.protocol.TxList) returns (google.protobuf.Empty);
 }
