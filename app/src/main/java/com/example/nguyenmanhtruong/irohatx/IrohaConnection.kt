@@ -35,7 +35,8 @@ class IrohaConnection(context: Context) {
                     .build()
 
             // sign transaction and get its binary representation (Blob)
-            var txblob = ModelProtoTransaction(createAccount).signAndAddSignature(adminKeys).finish().blob()
+            protoTxHelper = ModelProtoTransaction(createAccount)
+            var txblob = protoTxHelper.signAndAddSignature(adminKeys).finish().blob()
 
             // Convert ByteVector to byte array
             var bs = toByteArray(txblob)
@@ -81,7 +82,8 @@ class IrohaConnection(context: Context) {
             stub = CommandServiceGrpc.newBlockingStub(channel)
             stub.torii(protoTx)
 
-            // Check if it was successful
+            // Check if
+            // it was successful
             if (!isTransactionSuccessful(stub, setDetailsTransaction)) {
                 emitter.onError(RuntimeException("Transaction failed"))
             }

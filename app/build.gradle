@@ -20,11 +20,11 @@ android {
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue "string", "iroha_url", "192.168.1.106"
+            resValue "string", "iroha_url", "13.78.38.212"
             resValue "integer", "iroha_port", "50051"
         }
         debug {
-            resValue "string", "iroha_url", "192.168.1.106"
+            resValue "string", "iroha_url", "13.78.38.212"
             resValue "integer", "iroha_port", "50051"
         }
     }
